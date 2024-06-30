@@ -1,4 +1,4 @@
-// scripts.js
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetch('/tickers')

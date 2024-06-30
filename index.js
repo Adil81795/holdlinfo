@@ -6,7 +6,7 @@ const { Pool } = pkg;
 const app = express();
 const port = 3000;
 
-// PostgreSQL connection pool
+
 const pool = new Pool({
     user: 'your_username',
     host: 'localhost',
@@ -15,14 +15,13 @@ const pool = new Pool({
     port: 5432,
 });
 
-// Endpoint to fetch data from WazirX API and store in PostgreSQL
+
 app.get('/fetch-and-store', async (req, res) => {
     try {
-        // Fetch data from WazirX API
+   
         const response = await fetch('https://api.wazirx.com/api/v2/tickers');
         const tickers = await response.json();
 
-        // Process and store top 10 tickers
         const top10Tickers = Object.values(tickers).slice(0, 10);
         
         const client = await pool.connect();
@@ -41,7 +40,7 @@ app.get('/fetch-and-store', async (req, res) => {
     }
 });
 
-// Start server
+
 app.listen(port, () => {
     console.log(`Server is running at http://localhost:${port}`);
 });
